@@ -42,6 +42,7 @@
   "remoteUser": "vscode",
   "features": {
     "docker-in-docker": "latest",
-    "docker-from-docker": "latest"
+    "docker-from-docker": "latest",
+     "sshd": "lasted"
   }
 }
