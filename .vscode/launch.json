@@ -1,0 +1,17 @@
+{
+  "configurations": [
+
+
+    {
+      "type": "java",
+      "name": "Spring Boot-MuyuanWaterFactoryApp<muyuan-water-factory-app>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.muyuan.app.MuyuanWaterFactoryApp",
+      "projectName": "muyuan-water-factory-app",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env",
+    //   "vmArgs": ["-Dspring.config.location=classpath:/config/application.yml,classpath:/config/application-dev.yml"]
+    }
+  ]
+}

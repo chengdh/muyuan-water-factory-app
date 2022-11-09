@@ -1,0 +1,5 @@
+{
+    "java.dependency.packagePresentation": "flat",
+    "boot-java.live-information.automatic-connection.on": false,
+    "java.configuration.updateBuildConfiguration": "automatic"
+}

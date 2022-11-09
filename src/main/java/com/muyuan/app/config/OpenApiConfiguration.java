@@ -1,5 +1,6 @@
 package com.muyuan.app.config;
 
+import java.beans.JavaBean;
 import org.springdoc.core.GroupedOpenApi;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
