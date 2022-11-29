@@ -48,7 +48,7 @@ spring:
       # it can be set to any label, branch or commit of the configuration source Git repository
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://localhost:5432/MuyuanWaterFactoryApp
+    url: jdbc:postgresql://127.0.0.1:5432/MuyuanWaterFactoryApp
     username: MuyuanWaterFactoryApp
     password:
     hikari:
