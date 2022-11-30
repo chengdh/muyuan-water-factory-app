@@ -1,0 +1,88 @@
+
+//用户
+entity UserProxy {
+	isActive Boolean,
+    note String
+}
+//用户部门
+entity UserOrganization {
+	note String
+}
+relationship OneToMany {
+	UserProxy{userOrganizations} to UserOrganization
+}
+entity UserRole {
+	note String
+}
+
+relationship OneToMany {
+	UserProxy{userRoles} to UserRole
+}
+relationship ManyToOne {
+	UserOrganization{user} to UserProxy
+    UserOrganization{organization} to Organization
+    UserRole{user} to UserProxy
+    UserRole{role} to Role
+}
+
+//组织机构
+entity Organization {
+	name String required,
+    leader String,
+    address String,
+    isActive Boolean,
+    position Integer,
+    note String
+}
+relationship ManyToOne {
+	Organization{parent} to Organization
+}
+
+//功能分类
+entity SystemCategory {
+	name String required,
+    orderBy Integer,
+    icon String,
+    note String,
+    isActive Boolean
+}
+relationship ManyToOne {
+	SystemCategory{parent} to SystemCategory
+}
+
+//功能
+entity SystemFunction {
+	name String required,
+    orderBy Integer,
+    icon String,
+    note String,
+    isActive Boolean
+}
+relationship ManyToOne {
+	SystemFunction{systemCategory} to SystemCategory{systemFunctions}
+}
+
+//功能
+entity SystemFunctionOperate {
+	name String required,
+    code String required,
+    orderBy Integer,
+    note String,
+    isActive Boolean
+}
+relationship ManyToOne {
+	SystemFunctionOperate{systemFunctions} to SystemFunction{systemFunctionOperates}
+}
+
+//角色
+entity Role {
+	name String required,
+    code String required,
+    orderBy Integer,
+    note String,
+    isActive Boolean
+}
+
+relationship OneToMany {
+	Role{systemFunctionOperates} to SystemFunctionOperate
+}

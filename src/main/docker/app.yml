@@ -66,7 +66,7 @@ services:
     volumes:
       # - ./hasura/migrations:/hasura-migrations
       #- ./hasura/metadata:/hasura-metadata
-      - ./hasura:/hasura_project
+      - - /home/chengdonghui/my_project/muyuan-water-factory-app/hasura:/hasura_project
     working_dir: /hasura_project
     depends_on:
       - muyuanwaterfactoryapp-postgresql

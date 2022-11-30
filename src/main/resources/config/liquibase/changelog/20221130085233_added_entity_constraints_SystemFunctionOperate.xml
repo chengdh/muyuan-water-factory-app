@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity SystemFunctionOperate.
+    -->
+    <changeSet id="20221130085233-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="system_functions_id"
+                                 baseTableName="system_function_operate"
+                                 constraintName="fk_system_function_operate__system_functions_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="system_function"/>
+
+        <addForeignKeyConstraint baseColumnNames="role_id"
+                                 baseTableName="system_function_operate"
+                                 constraintName="fk_system_function_operate__role_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="role"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,51 @@
+{
+  "applications": "*",
+  "changelogDate": "20221130094027",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "system_function_operate",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "code",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "orderBy",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "note",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "isActive",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "SystemFunctionOperate",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "systemFunction",
+      "otherEntityRelationshipName": "systemFunctionOperates",
+      "relationshipName": "systemFunctions",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "role",
+      "otherEntityRelationshipName": "systemFunctionOperates",
+      "relationshipName": "role",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

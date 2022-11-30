@@ -1,0 +1,45 @@
+{
+  "applications": "*",
+  "changelogDate": "20221130094028",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "role",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "code",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "orderBy",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "note",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "isActive",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Role",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "systemFunctionOperate",
+      "otherEntityRelationshipName": "role",
+      "relationshipName": "systemFunctionOperates",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "no"
+}

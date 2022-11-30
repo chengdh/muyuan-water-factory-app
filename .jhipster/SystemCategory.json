@@ -1,0 +1,49 @@
+{
+  "applications": "*",
+  "changelogDate": "20221130094025",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "system_category",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "orderBy",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "icon",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "note",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "isActive",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "SystemCategory",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "systemCategory",
+      "relationshipName": "parent",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "systemFunction",
+      "otherEntityRelationshipName": "systemCategory",
+      "relationshipName": "systemFunctions",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "no"
+}

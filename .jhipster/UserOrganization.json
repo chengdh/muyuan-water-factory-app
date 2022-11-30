@@ -1,0 +1,37 @@
+{
+  "applications": "*",
+  "changelogDate": "20221130094030",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "user_organization",
+  "fields": [
+    {
+      "fieldName": "note",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "UserOrganization",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "userProxy",
+      "relationshipName": "user",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "organization",
+      "relationshipName": "organization",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "userProxy",
+      "otherEntityRelationshipName": "userOrganizations",
+      "relationshipName": "userProxy",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}
