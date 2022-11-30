@@ -22,6 +22,7 @@ services:
       - /home/chengdonghui/my_project/muyuan-water-factory-app/src/main/resources/config/application-dev.yml:/app/resources/config/application-dev.yml
     ports:
       - 8080:8080
+
   muyuanwaterfactoryapp-postgresql:
     image: postgres:14.5
     volumes:
@@ -57,3 +58,71 @@ services:
   #   # remove the "127.0.0.1:" prefix
   #   ports:
   #     - 8761:8761
+
+  muyuanwaterfactoryapp-hasura:
+    # Uncomment and comment image below to disable migrations
+    # image: hasura/graphql-engine:latest
+    image: hasura/graphql-engine:latest.cli-migrations-v2
+    volumes:
+      # - ./hasura/migrations:/hasura-migrations
+      #- ./hasura/metadata:/hasura-metadata
+      - ./hasura:/hasura_project
+    working_dir: /hasura_project
+    depends_on:
+      - muyuanwaterfactoryapp-postgresql
+    environment:
+      HASURA_GRAPHQL_ENABLE_CONSOLE: 'true'
+      HASURA_GRAPHQL_DEV_MODE: 'true'
+      HASURA_GRAPHQL_UNAUTHORIZED_ROLE: 'public'
+      HASURA_GRAPHQL_DATABASE_URL: 'postgresql://MuyuanWaterFactoryApp:@muyuanwaterfactoryapp-postgresql:5432/MuyuanWaterFactoryApp'
+      HASURA_GRAPHQL_ADMIN_SECRET: 'admin'
+      # Any $ in your secret key needs another $ for interpolation. > ex. `...4v$0n^c...` becomes `...4v$$0n^c...` (read readme.md)
+      HASURA_GRAPHQL_JWT_SECRET: '{ "type": "HS256", "key": "T2uy8pg3OjW26TdngnPA3LjuPlthW8AH6xIOBXu9oFs" }'
+    ports:
+      - '18080:8080'
+    restart: unless-stopped
+
+  muyuanwaterfactoryapp-pgweb:
+    container_name: pgweb
+    image: sosedoff/pgweb
+    ports:
+      - '18081:8081'
+    environment:
+      - DATABASE_URL=postgresql://MuyuanWaterFactoryApp:@muyuanwaterfactoryapp-postgresql:5432/MuyuanWaterFactoryApp?sslmode=disable
+    depends_on:
+      - muyuanwaterfactoryapp-postgresql
+    restart: unless-stopped
+
+  muyuanwaterfactoryapp-minio:
+    build:
+      context: minio
+    restart: unless-stopped
+    environment:
+      MINIO_ROOT_USER: ${S3_ACCESS_KEY:-5a7bdb5f42c41e0622bf61d6e08d5537}
+      MINIO_ROOT_PASSWORD: ${S3_SECRET_KEY:-9e1c40c65a615a5b52f52aeeaf549944ec53acb1dff4a0bf01fb58e969f915c8}
+    command: server --address 0.0.0.0:9191 --console-address 0.0.0.0:32765 /tmp
+    ports:
+      - '9191:9191'
+      - '32765:32765'
+
+  muyuanwaterfactoryapp-storage:
+    image: nhost/hasura-storage:0.3.2
+    depends_on:
+      - muyuanwaterfactoryapp-hasura
+    restart: unless-stopped
+
+    ports:
+      - '8181:8000'
+    environment:
+      DEBUG: 'true'
+      HASURA_METADATA: 1
+      HASURA_ENDPOINT: http://muyuanwaterfactoryapp-hasura:8080/v1
+      HASURA_GRAPHQL_ADMIN_SECRET: ${HASURA_GRAPHQL_ADMIN_SECRET:-admin}
+      S3_ENDPOINT: http://muyuanwaterfactoryapp-minio:9191
+      S3_ACCESS_KEY: ${S3_ACCESS_KEY:-5a7bdb5f42c41e0622bf61d6e08d5537}
+      S3_SECRET_KEY: ${S3_SECRET_KEY:-9e1c40c65a615a5b52f52aeeaf549944ec53acb1dff4a0bf01fb58e969f915c8}
+      S3_BUCKET: 'default'
+      S3_ROOT_FOLDER: 'f215cf48-7458-4596-9aa5-2159fc6a3caf'
+      POSTGRES_MIGRATIONS: 1
+      POSTGRES_MIGRATIONS_SOURCE: ${HASURA_GRAPHQL_DATABASE_URL:-postgresql://MuyuanWaterFactoryApp:@muyuanwaterfactoryapp-postgresql:5432/MuyuanWaterFactoryApp?sslmode=disable}
+    command: serve
