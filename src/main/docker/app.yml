@@ -1,5 +1,8 @@
 # This configuration is intended for development purpose, it's **your** responsibility to harden it for production
 version: '3.8'
+volumes:
+  muyuanwaterfactoryapp-postgresql-data:
+
 services:
   muyuanwaterfactoryapp-app:
     image: muyuanwaterfactoryapp
@@ -14,12 +17,15 @@ services:
       - JHIPSTER_SLEEP=30 # gives time for other services to boot before the application
     # If you want to expose these ports outside your dev PC,
     # remove the "127.0.0.1:" prefix
+    volumes:
+      # - ../resources/config:/app/resources/config
+      - /home/chengdonghui/my_project/muyuan-water-factory-app/src/main/resources/config/application-dev.yml:/app/resources/config/application-dev.yml
     ports:
       - 8080:8080
   muyuanwaterfactoryapp-postgresql:
     image: postgres:14.5
-    # volumes:
-    #   - ~/volumes/jhipster/MuyuanWaterFactoryApp/postgresql/:/var/lib/postgresql/data/
+    volumes:
+      - muyuanwaterfactoryapp-postgresql-data:/var/lib/postgresql/data/
     environment:
       - POSTGRES_USER=MuyuanWaterFactoryApp
       - POSTGRES_PASSWORD=
