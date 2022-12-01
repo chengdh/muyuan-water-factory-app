@@ -5,7 +5,7 @@ volumes:
 
 services:
   muyuanwaterfactoryapp-app:
-    image: muyuanwaterfactoryapp
+    image: chengdh/muyuan-backend-app
     environment:
       - _JAVA_OPTIONS=-Xmx512m -Xms256m
       - SPRING_PROFILES_ACTIVE=dev,api-docs
@@ -66,7 +66,7 @@ services:
     volumes:
       # - ./hasura/migrations:/hasura-migrations
       #- ./hasura/metadata:/hasura-metadata
-      - - /home/chengdonghui/my_project/muyuan-water-factory-app/hasura:/hasura_project
+      - /home/chengdonghui/my_project/muyuan-water-factory-app/hasura:/hasura_project
     working_dir: /hasura_project
     depends_on:
       - muyuanwaterfactoryapp-postgresql
