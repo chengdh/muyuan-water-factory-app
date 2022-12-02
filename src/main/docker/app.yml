@@ -5,7 +5,7 @@ volumes:
 
 services:
   muyuanwaterfactoryapp-app:
-    image: muyuanwaterfactoryapp
+    image: chengdh/muyuan-backend-app
     environment:
       - _JAVA_OPTIONS=-Xmx512m -Xms256m
       - SPRING_PROFILES_ACTIVE=dev,api-docs
@@ -19,7 +19,7 @@ services:
     # remove the "127.0.0.1:" prefix
     volumes:
       # - ../resources/config:/app/resources/config
-      - /home/chengdonghui/my_project/muyuan-water-factory-app/src/main/resources/config/application-dev.yml:/app/resources/config/application-dev.yml
+      - /Volumes/data/myproject/muyuan-water-factory-app/src/main/resources/config/application-dev.yml:/app/resources/config/application-dev.yml
     ports:
       - 8080:8080
 
@@ -27,6 +27,7 @@ services:
     image: postgres:14.5
     volumes:
       - muyuanwaterfactoryapp-postgresql-data:/var/lib/postgresql/data/
+      - /Volumes/data/myproject/muyuan-water-factory-app/src/main/docker/hasura-storage/initdb.d:/docker-entrypoint-initdb.d:ro
     environment:
       - POSTGRES_USER=MuyuanWaterFactoryApp
       - POSTGRES_PASSWORD=
@@ -63,10 +64,10 @@ services:
     # Uncomment and comment image below to disable migrations
     # image: hasura/graphql-engine:latest
     image: hasura/graphql-engine:latest.cli-migrations-v2
-    volumes:
+    # volumes:
       # - ./hasura/migrations:/hasura-migrations
       #- ./hasura/metadata:/hasura-metadata
-      - - /home/chengdonghui/my_project/muyuan-water-factory-app/hasura:/hasura_project
+      # - my_project/muyuan-water-factory-app/hasura:/hasura_project
     working_dir: /hasura_project
     depends_on:
       - muyuanwaterfactoryapp-postgresql
