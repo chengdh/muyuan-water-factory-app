@@ -1004,7 +1004,7 @@
                                 <changeLogFile>${project.basedir}/src/main/resources/config/liquibase/master.xml</changeLogFile>
                                 <diffChangeLogFile>${project.basedir}/src/main/resources/config/liquibase/changelog/${maven.build.timestamp}_changelog.xml</diffChangeLogFile>
                                 <driver>org.postgresql.Driver</driver>
-                                <url>jdbc:postgresql://localhost:5432/MuyuanWaterFactoryApp</url>
+                                <url>jdbc:postgresql://muyuanwaterfactoryapp-postgresql:5432/MuyuanWaterFactoryApp</url> 
                                 <defaultSchemaName></defaultSchemaName>
                                 <username>MuyuanWaterFactoryApp</username>
                                 <password></password>
