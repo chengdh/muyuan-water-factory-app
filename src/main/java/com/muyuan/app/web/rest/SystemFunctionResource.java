@@ -141,6 +141,9 @@ public class SystemFunctionResource {
                 if (systemFunction.getIsActive() != null) {
                     existingSystemFunction.setIsActive(systemFunction.getIsActive());
                 }
+                if (systemFunction.getDefaultAction() != null) {
+                    existingSystemFunction.setDefaultAction(systemFunction.getDefaultAction());
+                }
 
                 return existingSystemFunction;
             })

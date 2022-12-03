@@ -1,30 +1,15 @@
 
 //用户
-entity UserProxy {
-	isActive Boolean,
-    note String
+entity ApplicationUser {
+	realName String required
 }
-//用户部门
-entity UserOrganization {
-	note String
+relationship OneToOne {
+  ApplicationUser{internalUser} to User
 }
-relationship OneToMany {
-	UserProxy{userOrganizations} to UserOrganization
+relationship ManyToMany {
+  ApplicationUser{organizaitons} to Organization{applicationUsers}
+  ApplicationUser{roles} to Role {applicationUsers}
 }
-entity UserRole {
-	note String
-}
-
-relationship OneToMany {
-	UserProxy{userRoles} to UserRole
-}
-relationship ManyToOne {
-	UserOrganization{user} to UserProxy
-    UserOrganization{organization} to Organization
-    UserRole{user} to UserProxy
-    UserRole{role} to Role
-}
-
 //组织机构
 entity Organization {
 	name String required,
@@ -57,9 +42,10 @@ entity SystemFunction {
     icon String,
     note String,
     isActive Boolean
+    defaultAction String
 }
 relationship ManyToOne {
-	SystemFunction{systemCategory} to SystemCategory{systemFunctions}
+	SystemFunction{category} to SystemCategory{functions}
 }
 
 //功能
@@ -71,7 +57,7 @@ entity SystemFunctionOperate {
     isActive Boolean
 }
 relationship ManyToOne {
-	SystemFunctionOperate{systemFunctions} to SystemFunction{systemFunctionOperates}
+	SystemFunctionOperate{function} to SystemFunction{operates}
 }
 
 //角色
@@ -83,6 +69,6 @@ entity Role {
     isActive Boolean
 }
 
-relationship OneToMany {
-	Role{systemFunctionOperates} to SystemFunctionOperate
+relationship ManyToMany {
+	Role{operates} to SystemFunctionOperate{Roles}
 }

@@ -44,6 +44,9 @@ class SystemFunctionResourceIT {
     private static final Boolean DEFAULT_IS_ACTIVE = false;
     private static final Boolean UPDATED_IS_ACTIVE = true;
 
+    private static final String DEFAULT_DEFAULT_ACTION = "AAAAAAAAAA";
+    private static final String UPDATED_DEFAULT_ACTION = "BBBBBBBBBB";
+
     private static final String ENTITY_API_URL = "/api/system-functions";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -73,7 +76,8 @@ class SystemFunctionResourceIT {
             .orderBy(DEFAULT_ORDER_BY)
             .icon(DEFAULT_ICON)
             .note(DEFAULT_NOTE)
-            .isActive(DEFAULT_IS_ACTIVE);
+            .isActive(DEFAULT_IS_ACTIVE)
+            .defaultAction(DEFAULT_DEFAULT_ACTION);
         return systemFunction;
     }
 
@@ -89,7 +93,8 @@ class SystemFunctionResourceIT {
             .orderBy(UPDATED_ORDER_BY)
             .icon(UPDATED_ICON)
             .note(UPDATED_NOTE)
-            .isActive(UPDATED_IS_ACTIVE);
+            .isActive(UPDATED_IS_ACTIVE)
+            .defaultAction(UPDATED_DEFAULT_ACTION);
         return systemFunction;
     }
 
@@ -118,6 +123,7 @@ class SystemFunctionResourceIT {
         assertThat(testSystemFunction.getIcon()).isEqualTo(DEFAULT_ICON);
         assertThat(testSystemFunction.getNote()).isEqualTo(DEFAULT_NOTE);
         assertThat(testSystemFunction.getIsActive()).isEqualTo(DEFAULT_IS_ACTIVE);
+        assertThat(testSystemFunction.getDefaultAction()).isEqualTo(DEFAULT_DEFAULT_ACTION);
     }
 
     @Test
@@ -175,7 +181,8 @@ class SystemFunctionResourceIT {
             .andExpect(jsonPath("$.[*].orderBy").value(hasItem(DEFAULT_ORDER_BY)))
             .andExpect(jsonPath("$.[*].icon").value(hasItem(DEFAULT_ICON)))
             .andExpect(jsonPath("$.[*].note").value(hasItem(DEFAULT_NOTE)))
-            .andExpect(jsonPath("$.[*].isActive").value(hasItem(DEFAULT_IS_ACTIVE.booleanValue())));
+            .andExpect(jsonPath("$.[*].isActive").value(hasItem(DEFAULT_IS_ACTIVE.booleanValue())))
+            .andExpect(jsonPath("$.[*].defaultAction").value(hasItem(DEFAULT_DEFAULT_ACTION)));
     }
 
     @Test
@@ -194,7 +201,8 @@ class SystemFunctionResourceIT {
             .andExpect(jsonPath("$.orderBy").value(DEFAULT_ORDER_BY))
             .andExpect(jsonPath("$.icon").value(DEFAULT_ICON))
             .andExpect(jsonPath("$.note").value(DEFAULT_NOTE))
-            .andExpect(jsonPath("$.isActive").value(DEFAULT_IS_ACTIVE.booleanValue()));
+            .andExpect(jsonPath("$.isActive").value(DEFAULT_IS_ACTIVE.booleanValue()))
+            .andExpect(jsonPath("$.defaultAction").value(DEFAULT_DEFAULT_ACTION));
     }
 
     @Test
@@ -221,7 +229,8 @@ class SystemFunctionResourceIT {
             .orderBy(UPDATED_ORDER_BY)
             .icon(UPDATED_ICON)
             .note(UPDATED_NOTE)
-            .isActive(UPDATED_IS_ACTIVE);
+            .isActive(UPDATED_IS_ACTIVE)
+            .defaultAction(UPDATED_DEFAULT_ACTION);
 
         restSystemFunctionMockMvc
             .perform(
@@ -240,6 +249,7 @@ class SystemFunctionResourceIT {
         assertThat(testSystemFunction.getIcon()).isEqualTo(UPDATED_ICON);
         assertThat(testSystemFunction.getNote()).isEqualTo(UPDATED_NOTE);
         assertThat(testSystemFunction.getIsActive()).isEqualTo(UPDATED_IS_ACTIVE);
+        assertThat(testSystemFunction.getDefaultAction()).isEqualTo(UPDATED_DEFAULT_ACTION);
     }
 
     @Test
@@ -310,7 +320,7 @@ class SystemFunctionResourceIT {
         SystemFunction partialUpdatedSystemFunction = new SystemFunction();
         partialUpdatedSystemFunction.setId(systemFunction.getId());
 
-        partialUpdatedSystemFunction.name(UPDATED_NAME).orderBy(UPDATED_ORDER_BY);
+        partialUpdatedSystemFunction.name(UPDATED_NAME).orderBy(UPDATED_ORDER_BY).defaultAction(UPDATED_DEFAULT_ACTION);
 
         restSystemFunctionMockMvc
             .perform(
@@ -329,6 +339,7 @@ class SystemFunctionResourceIT {
         assertThat(testSystemFunction.getIcon()).isEqualTo(DEFAULT_ICON);
         assertThat(testSystemFunction.getNote()).isEqualTo(DEFAULT_NOTE);
         assertThat(testSystemFunction.getIsActive()).isEqualTo(DEFAULT_IS_ACTIVE);
+        assertThat(testSystemFunction.getDefaultAction()).isEqualTo(UPDATED_DEFAULT_ACTION);
     }
 
     @Test
@@ -348,7 +359,8 @@ class SystemFunctionResourceIT {
             .orderBy(UPDATED_ORDER_BY)
             .icon(UPDATED_ICON)
             .note(UPDATED_NOTE)
-            .isActive(UPDATED_IS_ACTIVE);
+            .isActive(UPDATED_IS_ACTIVE)
+            .defaultAction(UPDATED_DEFAULT_ACTION);
 
         restSystemFunctionMockMvc
             .perform(
@@ -367,6 +379,7 @@ class SystemFunctionResourceIT {
         assertThat(testSystemFunction.getIcon()).isEqualTo(UPDATED_ICON);
         assertThat(testSystemFunction.getNote()).isEqualTo(UPDATED_NOTE);
         assertThat(testSystemFunction.getIsActive()).isEqualTo(UPDATED_IS_ACTIVE);
+        assertThat(testSystemFunction.getDefaultAction()).isEqualTo(UPDATED_DEFAULT_ACTION);
     }
 
     @Test

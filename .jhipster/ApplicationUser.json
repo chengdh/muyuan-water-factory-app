@@ -1,0 +1,42 @@
+{
+  "applications": "*",
+  "changelogDate": "20221203035500",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "application_user",
+  "fields": [
+    {
+      "fieldName": "realName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "ApplicationUser",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "user",
+      "ownerSide": true,
+      "relationshipName": "internalUser",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "organization",
+      "otherEntityRelationshipName": "applicationUsers",
+      "ownerSide": true,
+      "relationshipName": "organizaitons",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "role",
+      "otherEntityRelationshipName": "applicationUsers",
+      "ownerSide": true,
+      "relationshipName": "roles",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "no"
+}

@@ -36,9 +36,17 @@
   "relationships": [
     {
       "otherEntityName": "systemFunctionOperate",
-      "otherEntityRelationshipName": "role",
-      "relationshipName": "systemFunctionOperates",
-      "relationshipType": "one-to-many"
+      "otherEntityRelationshipName": "roles",
+      "ownerSide": true,
+      "relationshipName": "operates",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "applicationUser",
+      "otherEntityRelationshipName": "roles",
+      "ownerSide": false,
+      "relationshipName": "applicationUsers",
+      "relationshipType": "many-to-many"
     }
   ],
   "service": "no"

@@ -40,12 +40,12 @@ public class SystemCategory implements Serializable {
     private Boolean isActive;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "parent", "systemFunctions" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "parent", "functions" }, allowSetters = true)
     private SystemCategory parent;
 
-    @OneToMany(mappedBy = "systemCategory")
-    @JsonIgnoreProperties(value = { "systemCategory", "systemFunctionOperates" }, allowSetters = true)
-    private Set<SystemFunction> systemFunctions = new HashSet<>();
+    @OneToMany(mappedBy = "category")
+    @JsonIgnoreProperties(value = { "category", "operates" }, allowSetters = true)
+    private Set<SystemFunction> functions = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -140,34 +140,34 @@ public class SystemCategory implements Serializable {
         return this;
     }
 
-    public Set<SystemFunction> getSystemFunctions() {
-        return this.systemFunctions;
+    public Set<SystemFunction> getFunctions() {
+        return this.functions;
     }
 
-    public void setSystemFunctions(Set<SystemFunction> systemFunctions) {
-        if (this.systemFunctions != null) {
-            this.systemFunctions.forEach(i -> i.setSystemCategory(null));
+    public void setFunctions(Set<SystemFunction> systemFunctions) {
+        if (this.functions != null) {
+            this.functions.forEach(i -> i.setCategory(null));
         }
         if (systemFunctions != null) {
-            systemFunctions.forEach(i -> i.setSystemCategory(this));
+            systemFunctions.forEach(i -> i.setCategory(this));
         }
-        this.systemFunctions = systemFunctions;
+        this.functions = systemFunctions;
     }
 
-    public SystemCategory systemFunctions(Set<SystemFunction> systemFunctions) {
-        this.setSystemFunctions(systemFunctions);
+    public SystemCategory functions(Set<SystemFunction> systemFunctions) {
+        this.setFunctions(systemFunctions);
         return this;
     }
 
-    public SystemCategory addSystemFunctions(SystemFunction systemFunction) {
-        this.systemFunctions.add(systemFunction);
-        systemFunction.setSystemCategory(this);
+    public SystemCategory addFunctions(SystemFunction systemFunction) {
+        this.functions.add(systemFunction);
+        systemFunction.setCategory(this);
         return this;
     }
 
-    public SystemCategory removeSystemFunctions(SystemFunction systemFunction) {
-        this.systemFunctions.remove(systemFunction);
-        systemFunction.setSystemCategory(null);
+    public SystemCategory removeFunctions(SystemFunction systemFunction) {
+        this.functions.remove(systemFunction);
+        systemFunction.setCategory(null);
         return this;
     }
 

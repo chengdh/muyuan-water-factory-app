@@ -25,6 +25,10 @@
     {
       "fieldName": "isActive",
       "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "defaultAction",
+      "fieldType": "String"
     }
   ],
   "fluentMethods": true,
@@ -35,14 +39,14 @@
   "relationships": [
     {
       "otherEntityName": "systemCategory",
-      "otherEntityRelationshipName": "systemFunctions",
-      "relationshipName": "systemCategory",
+      "otherEntityRelationshipName": "functions",
+      "relationshipName": "category",
       "relationshipType": "many-to-one"
     },
     {
       "otherEntityName": "systemFunctionOperate",
-      "otherEntityRelationshipName": "systemFunctions",
-      "relationshipName": "systemFunctionOperates",
+      "otherEntityRelationshipName": "function",
+      "relationshipName": "operates",
       "relationshipType": "one-to-many"
     }
   ],

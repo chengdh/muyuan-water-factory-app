@@ -41,6 +41,13 @@
       "otherEntityName": "organization",
       "relationshipName": "parent",
       "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "applicationUser",
+      "otherEntityRelationshipName": "organizaitons",
+      "ownerSide": false,
+      "relationshipName": "applicationUsers",
+      "relationshipType": "many-to-many"
     }
   ],
   "service": "no"

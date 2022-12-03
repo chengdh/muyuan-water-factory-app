@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity Role.
+    -->
+    <changeSet id="20221130094028-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="role_id"
+                                 baseTableName="rel_role__operates"
+                                 constraintName="fk_rel_role__operates__role_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="role"/>
+
+        <addForeignKeyConstraint baseColumnNames="operates_id"
+                                 baseTableName="rel_role__operates"
+                                 constraintName="fk_rel_role__operates__operates_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="system_function_operate"/>
+    </changeSet>
+</databaseChangeLog>

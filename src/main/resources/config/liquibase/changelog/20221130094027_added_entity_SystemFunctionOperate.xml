@@ -29,10 +29,7 @@
             <column name="is_active" type="boolean">
                 <constraints nullable="true" />
             </column>
-            <column name="system_functions_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-            <column name="role_id" type="bigint">
+            <column name="function_id" type="bigint">
                 <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->

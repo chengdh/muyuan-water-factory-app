@@ -1,6 +1,6 @@
 package com.muyuan.app.repository;
 
-import com.muyuan.app.domain.Role;
+import com.muyuan.app.domain.ApplicationUser;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
@@ -10,22 +10,22 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**
- * Spring Data JPA repository for the Role entity.
+ * Spring Data JPA repository for the ApplicationUser entity.
  *
- * When extending this class, extend RoleRepositoryWithBagRelationships too.
+ * When extending this class, extend ApplicationUserRepositoryWithBagRelationships too.
  * For more information refer to https://github.com/jhipster/generator-jhipster/issues/17990.
  */
 @Repository
-public interface RoleRepository extends RoleRepositoryWithBagRelationships, JpaRepository<Role, Long> {
-    default Optional<Role> findOneWithEagerRelationships(Long id) {
+public interface ApplicationUserRepository extends ApplicationUserRepositoryWithBagRelationships, JpaRepository<ApplicationUser, Long> {
+    default Optional<ApplicationUser> findOneWithEagerRelationships(Long id) {
         return this.fetchBagRelationships(this.findById(id));
     }
 
-    default List<Role> findAllWithEagerRelationships() {
+    default List<ApplicationUser> findAllWithEagerRelationships() {
         return this.fetchBagRelationships(this.findAll());
     }
 
-    default Page<Role> findAllWithEagerRelationships(Pageable pageable) {
+    default Page<ApplicationUser> findAllWithEagerRelationships(Pageable pageable) {
         return this.fetchBagRelationships(this.findAll(pageable));
     }
 }

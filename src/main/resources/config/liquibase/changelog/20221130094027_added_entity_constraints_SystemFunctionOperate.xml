@@ -8,16 +8,10 @@
     -->
     <changeSet id="20221130094027-2" author="jhipster">
 
-        <addForeignKeyConstraint baseColumnNames="system_functions_id"
+        <addForeignKeyConstraint baseColumnNames="function_id"
                                  baseTableName="system_function_operate"
-                                 constraintName="fk_system_function_operate__system_functions_id"
+                                 constraintName="fk_system_function_operate__function_id"
                                  referencedColumnNames="id"
                                  referencedTableName="system_function"/>
-
-        <addForeignKeyConstraint baseColumnNames="role_id"
-                                 baseTableName="system_function_operate"
-                                 constraintName="fk_system_function_operate__role_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="role"/>
     </changeSet>
 </databaseChangeLog>

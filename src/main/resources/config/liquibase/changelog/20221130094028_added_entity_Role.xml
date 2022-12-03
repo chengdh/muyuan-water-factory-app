@@ -33,6 +33,20 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="20221130094028-1-relations" author="jhipster">
+
+        <createTable tableName="rel_role__operates">
+            <column name="operates_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="role_id, operates_id" tableName="rel_role__operates"/>
+    </changeSet>
+
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
 
     <!--

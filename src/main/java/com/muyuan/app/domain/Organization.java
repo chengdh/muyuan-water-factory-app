@@ -2,6 +2,8 @@ package com.muyuan.app.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
@@ -41,8 +43,12 @@ public class Organization implements Serializable {
     private String note;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "parent" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "parent", "applicationUsers" }, allowSetters = true)
     private Organization parent;
+
+    @ManyToMany(mappedBy = "organizaitons")
+    @JsonIgnoreProperties(value = { "internalUser", "organizaitons", "roles" }, allowSetters = true)
+    private Set<ApplicationUser> applicationUsers = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -147,6 +153,37 @@ public class Organization implements Serializable {
 
     public Organization parent(Organization organization) {
         this.setParent(organization);
+        return this;
+    }
+
+    public Set<ApplicationUser> getApplicationUsers() {
+        return this.applicationUsers;
+    }
+
+    public void setApplicationUsers(Set<ApplicationUser> applicationUsers) {
+        if (this.applicationUsers != null) {
+            this.applicationUsers.forEach(i -> i.removeOrganizaitons(this));
+        }
+        if (applicationUsers != null) {
+            applicationUsers.forEach(i -> i.addOrganizaitons(this));
+        }
+        this.applicationUsers = applicationUsers;
+    }
+
+    public Organization applicationUsers(Set<ApplicationUser> applicationUsers) {
+        this.setApplicationUsers(applicationUsers);
+        return this;
+    }
+
+    public Organization addApplicationUsers(ApplicationUser applicationUser) {
+        this.applicationUsers.add(applicationUser);
+        applicationUser.getOrganizaitons().add(this);
+        return this;
+    }
+
+    public Organization removeApplicationUsers(ApplicationUser applicationUser) {
+        this.applicationUsers.remove(applicationUser);
+        applicationUser.getOrganizaitons().remove(this);
         return this;
     }
 

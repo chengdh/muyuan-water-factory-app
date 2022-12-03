@@ -40,8 +40,8 @@
     },
     {
       "otherEntityName": "systemFunction",
-      "otherEntityRelationshipName": "systemCategory",
-      "relationshipName": "systemFunctions",
+      "otherEntityRelationshipName": "category",
+      "relationshipName": "functions",
       "relationshipType": "one-to-many"
     }
   ],

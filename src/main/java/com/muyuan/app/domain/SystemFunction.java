@@ -39,13 +39,16 @@ public class SystemFunction implements Serializable {
     @Column(name = "is_active")
     private Boolean isActive;
 
-    @ManyToOne
-    @JsonIgnoreProperties(value = { "parent", "systemFunctions" }, allowSetters = true)
-    private SystemCategory systemCategory;
+    @Column(name = "default_action")
+    private String defaultAction;
 
-    @OneToMany(mappedBy = "systemFunctions")
-    @JsonIgnoreProperties(value = { "systemFunctions", "role" }, allowSetters = true)
-    private Set<SystemFunctionOperate> systemFunctionOperates = new HashSet<>();
+    @ManyToOne
+    @JsonIgnoreProperties(value = { "parent", "functions" }, allowSetters = true)
+    private SystemCategory category;
+
+    @OneToMany(mappedBy = "function")
+    @JsonIgnoreProperties(value = { "function", "roles" }, allowSetters = true)
+    private Set<SystemFunctionOperate> operates = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -127,47 +130,60 @@ public class SystemFunction implements Serializable {
         this.isActive = isActive;
     }
 
-    public SystemCategory getSystemCategory() {
-        return this.systemCategory;
+    public String getDefaultAction() {
+        return this.defaultAction;
     }
 
-    public void setSystemCategory(SystemCategory systemCategory) {
-        this.systemCategory = systemCategory;
-    }
-
-    public SystemFunction systemCategory(SystemCategory systemCategory) {
-        this.setSystemCategory(systemCategory);
+    public SystemFunction defaultAction(String defaultAction) {
+        this.setDefaultAction(defaultAction);
         return this;
     }
 
-    public Set<SystemFunctionOperate> getSystemFunctionOperates() {
-        return this.systemFunctionOperates;
+    public void setDefaultAction(String defaultAction) {
+        this.defaultAction = defaultAction;
     }
 
-    public void setSystemFunctionOperates(Set<SystemFunctionOperate> systemFunctionOperates) {
-        if (this.systemFunctionOperates != null) {
-            this.systemFunctionOperates.forEach(i -> i.setSystemFunctions(null));
+    public SystemCategory getCategory() {
+        return this.category;
+    }
+
+    public void setCategory(SystemCategory systemCategory) {
+        this.category = systemCategory;
+    }
+
+    public SystemFunction category(SystemCategory systemCategory) {
+        this.setCategory(systemCategory);
+        return this;
+    }
+
+    public Set<SystemFunctionOperate> getOperates() {
+        return this.operates;
+    }
+
+    public void setOperates(Set<SystemFunctionOperate> systemFunctionOperates) {
+        if (this.operates != null) {
+            this.operates.forEach(i -> i.setFunction(null));
         }
         if (systemFunctionOperates != null) {
-            systemFunctionOperates.forEach(i -> i.setSystemFunctions(this));
+            systemFunctionOperates.forEach(i -> i.setFunction(this));
         }
-        this.systemFunctionOperates = systemFunctionOperates;
+        this.operates = systemFunctionOperates;
     }
 
-    public SystemFunction systemFunctionOperates(Set<SystemFunctionOperate> systemFunctionOperates) {
-        this.setSystemFunctionOperates(systemFunctionOperates);
+    public SystemFunction operates(Set<SystemFunctionOperate> systemFunctionOperates) {
+        this.setOperates(systemFunctionOperates);
         return this;
     }
 
-    public SystemFunction addSystemFunctionOperates(SystemFunctionOperate systemFunctionOperate) {
-        this.systemFunctionOperates.add(systemFunctionOperate);
-        systemFunctionOperate.setSystemFunctions(this);
+    public SystemFunction addOperates(SystemFunctionOperate systemFunctionOperate) {
+        this.operates.add(systemFunctionOperate);
+        systemFunctionOperate.setFunction(this);
         return this;
     }
 
-    public SystemFunction removeSystemFunctionOperates(SystemFunctionOperate systemFunctionOperate) {
-        this.systemFunctionOperates.remove(systemFunctionOperate);
-        systemFunctionOperate.setSystemFunctions(null);
+    public SystemFunction removeOperates(SystemFunctionOperate systemFunctionOperate) {
+        this.operates.remove(systemFunctionOperate);
+        systemFunctionOperate.setFunction(null);
         return this;
     }
 
@@ -200,6 +216,7 @@ public class SystemFunction implements Serializable {
             ", icon='" + getIcon() + "'" +
             ", note='" + getNote() + "'" +
             ", isActive='" + getIsActive() + "'" +
+            ", defaultAction='" + getDefaultAction() + "'" +
             "}";
     }
 }

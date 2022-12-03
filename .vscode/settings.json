@@ -1,8 +1,8 @@
 {
-    "java.dependency.packagePresentation": "flat",
-    "boot-java.live-information.automatic-connection.on": false,
-    "java.configuration.updateBuildConfiguration": "automatic",
-    "docker.host": "unix:///var/run/docker.sock",
-    "docker.tlsVerify": ""
-
+  "java.dependency.packagePresentation": "flat",
+  "boot-java.live-information.automatic-connection.on": false,
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "docker.host": "unix:///var/run/docker.sock",
+  "docker.tlsVerify": "",
+  "java.compile.nullAnalysis.mode": "automatic"
 }

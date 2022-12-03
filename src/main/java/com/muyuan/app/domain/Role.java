@@ -40,9 +40,18 @@ public class Role implements Serializable {
     @Column(name = "is_active")
     private Boolean isActive;
 
-    @OneToMany(mappedBy = "role")
-    @JsonIgnoreProperties(value = { "systemFunctions", "role" }, allowSetters = true)
-    private Set<SystemFunctionOperate> systemFunctionOperates = new HashSet<>();
+    @ManyToMany
+    @JoinTable(
+        name = "rel_role__operates",
+        joinColumns = @JoinColumn(name = "role_id"),
+        inverseJoinColumns = @JoinColumn(name = "operates_id")
+    )
+    @JsonIgnoreProperties(value = { "function", "roles" }, allowSetters = true)
+    private Set<SystemFunctionOperate> operates = new HashSet<>();
+
+    @ManyToMany(mappedBy = "roles")
+    @JsonIgnoreProperties(value = { "internalUser", "organizaitons", "roles" }, allowSetters = true)
+    private Set<ApplicationUser> applicationUsers = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -124,34 +133,59 @@ public class Role implements Serializable {
         this.isActive = isActive;
     }
 
-    public Set<SystemFunctionOperate> getSystemFunctionOperates() {
-        return this.systemFunctionOperates;
+    public Set<SystemFunctionOperate> getOperates() {
+        return this.operates;
     }
 
-    public void setSystemFunctionOperates(Set<SystemFunctionOperate> systemFunctionOperates) {
-        if (this.systemFunctionOperates != null) {
-            this.systemFunctionOperates.forEach(i -> i.setRole(null));
-        }
-        if (systemFunctionOperates != null) {
-            systemFunctionOperates.forEach(i -> i.setRole(this));
-        }
-        this.systemFunctionOperates = systemFunctionOperates;
+    public void setOperates(Set<SystemFunctionOperate> systemFunctionOperates) {
+        this.operates = systemFunctionOperates;
     }
 
-    public Role systemFunctionOperates(Set<SystemFunctionOperate> systemFunctionOperates) {
-        this.setSystemFunctionOperates(systemFunctionOperates);
+    public Role operates(Set<SystemFunctionOperate> systemFunctionOperates) {
+        this.setOperates(systemFunctionOperates);
         return this;
     }
 
-    public Role addSystemFunctionOperates(SystemFunctionOperate systemFunctionOperate) {
-        this.systemFunctionOperates.add(systemFunctionOperate);
-        systemFunctionOperate.setRole(this);
+    public Role addOperates(SystemFunctionOperate systemFunctionOperate) {
+        this.operates.add(systemFunctionOperate);
+        systemFunctionOperate.getRoles().add(this);
         return this;
     }
 
-    public Role removeSystemFunctionOperates(SystemFunctionOperate systemFunctionOperate) {
-        this.systemFunctionOperates.remove(systemFunctionOperate);
-        systemFunctionOperate.setRole(null);
+    public Role removeOperates(SystemFunctionOperate systemFunctionOperate) {
+        this.operates.remove(systemFunctionOperate);
+        systemFunctionOperate.getRoles().remove(this);
+        return this;
+    }
+
+    public Set<ApplicationUser> getApplicationUsers() {
+        return this.applicationUsers;
+    }
+
+    public void setApplicationUsers(Set<ApplicationUser> applicationUsers) {
+        if (this.applicationUsers != null) {
+            this.applicationUsers.forEach(i -> i.removeRoles(this));
+        }
+        if (applicationUsers != null) {
+            applicationUsers.forEach(i -> i.addRoles(this));
+        }
+        this.applicationUsers = applicationUsers;
+    }
+
+    public Role applicationUsers(Set<ApplicationUser> applicationUsers) {
+        this.setApplicationUsers(applicationUsers);
+        return this;
+    }
+
+    public Role addApplicationUsers(ApplicationUser applicationUser) {
+        this.applicationUsers.add(applicationUser);
+        applicationUser.getRoles().add(this);
+        return this;
+    }
+
+    public Role removeApplicationUsers(ApplicationUser applicationUser) {
+        this.applicationUsers.remove(applicationUser);
+        applicationUser.getRoles().remove(this);
         return this;
     }
 

@@ -36,15 +36,16 @@
   "relationships": [
     {
       "otherEntityName": "systemFunction",
-      "otherEntityRelationshipName": "systemFunctionOperates",
-      "relationshipName": "systemFunctions",
+      "otherEntityRelationshipName": "operates",
+      "relationshipName": "function",
       "relationshipType": "many-to-one"
     },
     {
       "otherEntityName": "role",
-      "otherEntityRelationshipName": "systemFunctionOperates",
-      "relationshipName": "role",
-      "relationshipType": "many-to-one"
+      "otherEntityRelationshipName": "operates",
+      "ownerSide": false,
+      "relationshipName": "roles",
+      "relationshipType": "many-to-many"
     }
   ],
   "service": "no"

@@ -27,7 +27,8 @@
       "Role",
       "UserProxy",
       "UserOrganization",
-      "UserRole"
+      "UserRole",
+      "ApplicationUser"
     ],
     "entitySuffix": "",
     "gitCompany": "",
@@ -35,7 +36,7 @@
     "jhipsterVersion": "7.9.3",
     "jwtSecretKey": "ZjQ4YmFmYmJmNDc5OTg3YmU0MjFmZDkwM2RkOTk3ZmZkMjYxNTY0NzczYzRlNzEwMGUxMmZmOTFkZDYyNjQ4M2I4ZjdmZDcyYTU3NTZhMTFiZmRiODg3OTVhNTMzNWViNzI5Mjg4OGE0NmNhZjkyNmMyZmYzYmY5ODliNjkyNjI=",
     "languages": ["en"],
-    "lastLiquibaseTimestamp": 1669801231000,
+    "lastLiquibaseTimestamp": 1670039700000,
     "messageBroker": false,
     "nativeLanguage": "en",
     "otherModules": [],

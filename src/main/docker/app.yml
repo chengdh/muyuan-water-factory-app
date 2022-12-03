@@ -19,7 +19,8 @@ services:
     # remove the "127.0.0.1:" prefix
     volumes:
       # - ../resources/config:/app/resources/config
-      - /Volumes/data/myproject/muyuan-water-factory-app/src/main/resources/config/application-dev.yml:/app/resources/config/application-dev.yml
+      # - /Volumes/data/myproject/muyuan-water-factory-app/src/main/resources/config/application-dev.yml:/app/resources/config/application-dev.yml
+      - /home/chengdonghui/my_project/muyuan-water-factory-app/src/main/resources/config/application-dev.yml:/app/resources/config/application-dev.yml
     ports:
       - 8080:8080
 
@@ -65,9 +66,9 @@ services:
     # image: hasura/graphql-engine:latest
     image: hasura/graphql-engine:latest.cli-migrations-v2
     # volumes:
-      # - ./hasura/migrations:/hasura-migrations
-      #- ./hasura/metadata:/hasura-metadata
-      # - my_project/muyuan-water-factory-app/hasura:/hasura_project
+    # - ./hasura/migrations:/hasura-migrations
+    #- ./hasura/metadata:/hasura-metadata
+    # - my_project/muyuan-water-factory-app/hasura:/hasura_project
     working_dir: /hasura_project
     depends_on:
       - muyuanwaterfactoryapp-postgresql
