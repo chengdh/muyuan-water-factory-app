@@ -107,7 +107,22 @@
     </dependencyManagement>
 
     <dependencies>
-
+        <!--由于vscode的bug，无法正确识别dependency,暂时加到这里-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!--由于vscode的bug，无法正确识别dependency,暂时加到这里-->
         <dependency>
             <groupId>tech.jhipster</groupId>
             <artifactId>jhipster-framework</artifactId>
@@ -1004,7 +1019,7 @@
                                 <changeLogFile>${project.basedir}/src/main/resources/config/liquibase/master.xml</changeLogFile>
                                 <diffChangeLogFile>${project.basedir}/src/main/resources/config/liquibase/changelog/${maven.build.timestamp}_changelog.xml</diffChangeLogFile>
                                 <driver>org.postgresql.Driver</driver>
-                                <url>jdbc:postgresql://muyuanwaterfactoryapp-postgresql:5432/MuyuanWaterFactoryApp</url> 
+                                <url>jdbc:postgresql://muyuanwaterfactoryapp-postgresql:5432/MuyuanWaterFactoryApp</url>
                                 <defaultSchemaName></defaultSchemaName>
                                 <username>MuyuanWaterFactoryApp</username>
                                 <password></password>

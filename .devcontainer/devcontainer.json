@@ -2,7 +2,7 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.209.6/containers/java
 {
   "name": "MuyuanWaterFactoryApp",
-  // "runArgs": ["--network=muyuan-dev-network"],
+  "runArgs": ["--network=muyuan-app-network"],
   "build": {
     "dockerfile": "Dockerfile",
     "args": {
