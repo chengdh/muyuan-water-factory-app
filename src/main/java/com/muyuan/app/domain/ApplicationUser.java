@@ -140,7 +140,8 @@ public class ApplicationUser implements Serializable {
         return this;
     }
 
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and
+    // setters here
 
     @Override
     public boolean equals(Object o) {
@@ -155,7 +156,8 @@ public class ApplicationUser implements Serializable {
 
     @Override
     public int hashCode() {
-        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
+        // see
+        // https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
         return getClass().hashCode();
     }
 
@@ -163,8 +165,8 @@ public class ApplicationUser implements Serializable {
     @Override
     public String toString() {
         return "ApplicationUser{" +
-            "id=" + getId() +
-            ", realName='" + getRealName() + "'" +
-            "}";
+                "id=" + getId() +
+                ", realName='" + getRealName() + "'" +
+                "}";
     }
 }

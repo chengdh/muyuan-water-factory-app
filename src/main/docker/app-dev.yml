@@ -28,9 +28,9 @@ services:
   muyuanwaterfactoryapp-postgresql:
     image: postgres:14.5
     volumes:
+      - ../hasura-storage/initdb.d:/docker-entrypoint-initdb.d:ro
       - muyuanwaterfactoryapp-postgresql-data:/var/lib/postgresql/data/
       # - /Volumes/data/myproject/muyuan-water-factory-app/src/main/docker/hasura-storage/initdb.d:/docker-entrypoint-initdb.d:ro
-      - ../hasura-storage/initdb.d:/docker-entrypoint-initdb.d:ro
     environment:
       - POSTGRES_USER=MuyuanWaterFactoryApp
       - POSTGRES_PASSWORD=

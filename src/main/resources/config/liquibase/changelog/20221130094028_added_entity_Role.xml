@@ -77,7 +77,7 @@
             tableName="rel_role__operates"
             usePreparedStatements="true">
             <column name="role_id" type="numeric" />
-            <column name="operate_id" type="numeric" />
+            <column name="operates_id" type="numeric" />
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

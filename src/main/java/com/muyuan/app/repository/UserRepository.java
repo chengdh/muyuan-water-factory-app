@@ -24,10 +24,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findOneByLogin(String login);
 
-    @EntityGraph(attributePaths = "authorities,applicationUser.roles,applicatonUser.organization")
+    @EntityGraph(attributePaths = { "authorities", "applicationUser.roles", "applicationUser.organizaitons" })
     Optional<User> findOneWithAuthoritiesByLogin(String login);
 
-    @EntityGraph(attributePaths = "authorities,applicationUser.roles,applicatonUser.organization")
+    @EntityGraph(attributePaths = "authorities")
     Optional<User> findOneWithAuthoritiesByEmailIgnoreCase(String email);
 
     Page<User> findAllByIdNotNullAndActivatedIsTrue(Pageable pageable);

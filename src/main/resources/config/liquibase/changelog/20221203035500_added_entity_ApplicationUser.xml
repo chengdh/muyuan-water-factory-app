@@ -67,24 +67,30 @@
             usePreparedStatements="true">
             <column name="id" type="numeric" />
             <column name="real_name" type="string" />
+            <column name="internal_user_id" type="numeric" />
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
+    </changeSet>
+    <changeSet id="20221203035500-1-user-organization" author="jhipster">
         <loadData
             file="config/liquibase/data/application_user_organization.csv"
             separator=";"
             tableName="rel_application_user__organizaitons"
             usePreparedStatements="true">
             <column name="application_user_id" type="numeric" />
-            <column name="organization_id" type="numeric" />
+            <column name="organizaitons_id" type="numeric" />
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
+    </changeSet>
+
+    <changeSet id="20221203035500-1-user-role" author="jhipster">
         <loadData
             file="config/liquibase/data/application_user_role.csv"
             separator=";"
-            tableName="rel_application_user__role"
+            tableName="rel_application_user__roles"
             usePreparedStatements="true">
             <column name="application_user_id" type="numeric" />
-            <column name="role_id" type="numeric" />
+            <column name="roles_id" type="numeric" />
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
 
