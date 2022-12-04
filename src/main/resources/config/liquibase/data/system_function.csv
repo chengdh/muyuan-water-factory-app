@@ -1,0 +1,16 @@
+id;name;category_id;order_by;icon;note;is_active;default_action
+1;用户申请;1;1;;用户申请;true;null
+2;方案制定;1;1;;方案制定;true;null
+3;工程合同;1;1;;工程合同;true;null
+4;工程施工;1;1;;工程施工;true;null
+5;工程验收;1;1;;工程验收;true;null
+6;签订供水合同;1;1;;签订供水合同;true;null
+7;移交用户管理;1;1;;移交用户管理;true;null
+8;用户申请;2;1;;用户申请;true;null
+9;方案制定;2;1;;方案制定;true;null
+10;工程合同;2;1;;工程合同;true;null
+11;工程施工;2;1;;工程施工;true;null
+12;水表试水分户验收;2;1;;水表试水分户验收;true;null
+13;竣工验收;2;1;;竣工验收;true;null
+14;签订供水合同;2;1;;签订供水合同;true;null
+15;移交用户管理;2;1;;移交用户管理;true;null

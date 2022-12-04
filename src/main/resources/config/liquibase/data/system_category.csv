@@ -1,0 +1,3 @@
+id;name;order_by;icon;note;is_active
+1;零星报装管理;1;;零星报装;true
+1;小区报装管理;1;;小区报装管理;true

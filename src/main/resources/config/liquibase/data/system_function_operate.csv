@@ -1,0 +1,6 @@
+id;name;function_id;code;order_by;note;is_active
+1;查看用户申请;1;read_user_request_bill;1;查看用户申请;true
+2;新建用户申请;1;create_user_request_bill;1;新建用户申请;true
+3;修改用户申请;1;edit_user_request_bill;1;修改用户申请;true
+4;删除用户申请;1;delete_user_request_bill;1;删除用户申请;true
+5;导出用户申请;1;export_user_request_bill;1;导出用户申请;true

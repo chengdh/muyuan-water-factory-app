@@ -1,0 +1,3 @@
+id;name;code;order_by;note;is_active
+1;管理角色;role-admin;1;管理员角色;true
+2;用户角色;role-user;1;用户角色;true

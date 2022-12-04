@@ -1,0 +1,6 @@
+id;name;leader;address;is_active;position;parent_id;note
+1;牟源水厂;赵总;牟源水厂;true;1;;备注
+2;工程部;张三;工程部;true;1;1;备注
+3;客服部;李四;客服部;true;1;1;备注
+4;财务部;王小二;财务部;true;1;1;备注
+5;物资部;赵老六;物资部;true;1;1;备注
