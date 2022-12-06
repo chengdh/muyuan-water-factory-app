@@ -24,10 +24,15 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findOneByLogin(String login);
 
-    @EntityGraph(attributePaths = { "authorities", "applicationUser.roles", "applicationUser.organizaitons" })
+    // 获取的用户信息包含角色/角色权限/组织机构/
+    @EntityGraph(
+        attributePaths = { "authorities", "applicationUser.roles", "applicationUser.roles.operates", "applicationUser.organizaitons" }
+    )
     Optional<User> findOneWithAuthoritiesByLogin(String login);
 
-    @EntityGraph(attributePaths = "authorities")
+    @EntityGraph(
+        attributePaths = { "authorities", "applicationUser.roles", "applicationUser.roles.operates", "applicationUser.organizaitons" }
+    )
     Optional<User> findOneWithAuthoritiesByEmailIgnoreCase(String email);
 
     Page<User> findAllByIdNotNullAndActivatedIsTrue(Pageable pageable);
