@@ -2,6 +2,8 @@ package com.muyuan.app.service.dto;
 
 import com.muyuan.app.config.Constants;
 import com.muyuan.app.domain.Authority;
+import com.muyuan.app.domain.Organization;
+import com.muyuan.app.domain.Role;
 import com.muyuan.app.domain.User;
 import java.io.Serializable;
 import java.time.Instant;
@@ -50,6 +52,8 @@ public class AdminUserDTO implements Serializable {
     private Instant lastModifiedDate;
 
     private Set<String> authorities;
+    private Set<Role> roles;
+    private Set<Organization> organizations;
 
     public AdminUserDTO() {
         // Empty constructor needed for Jackson.
@@ -69,6 +73,8 @@ public class AdminUserDTO implements Serializable {
         this.lastModifiedBy = user.getLastModifiedBy();
         this.lastModifiedDate = user.getLastModifiedDate();
         this.authorities = user.getAuthorities().stream().map(Authority::getName).collect(Collectors.toSet());
+        this.roles = user.getApplicationUser().getRoles();
+        this.organizations = user.getApplicationUser().getOrganizaitons();
     }
 
     public Long getId() {
@@ -173,6 +179,22 @@ public class AdminUserDTO implements Serializable {
 
     public void setAuthorities(Set<String> authorities) {
         this.authorities = authorities;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public Set<Organization> getOrganizations() {
+        return organizations;
+    }
+
+    public void setOrganizations(Set<Organization> organizations) {
+        this.organizations = organizations;
     }
 
     // prettier-ignore
